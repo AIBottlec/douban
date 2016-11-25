@@ -13,6 +13,7 @@
 	module.controller('inTheatersController', ['$scope','$http',function ($scope,$http) {
 		//控制器编写：1.设计暴露的数据；2.设计暴露的行为
 		// 引用豆瓣API https://developers.douban.com/wiki/?title=api_v2
+		//data.json数据来源http://api.douban.com/v2/movie/in_theaters
 		$scope.subjects= [];
 		$scope.message = '';
 		$http({
