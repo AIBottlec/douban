@@ -1,8 +1,7 @@
 <h1 class="page-header">正在热映</h1>
 <h2 ng-if="message">{{message}}</h2>
 <div class="list-group">
-	<!--过滤器limitTo的使用,对基于本地的数据做筛选-->
-	<a ng-repeat="item in subjects | limitTo : 10 : 10" href="#" class="list-group-item" >
+	<a ng-repeat="item in subjects" href="#" class="list-group-item" >
 		<span class="badge">{{item.rating.average}}</span>
 		<div class="media">
 			<div class="media-left">
