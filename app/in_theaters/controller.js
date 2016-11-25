@@ -21,6 +21,7 @@
 			url: '/movie/app/data.json'
 		}).then(function successCallback(response) {
 			if(response.status == 200){
+				// 此处代码是在异步请求完成后才执行（需要等一段时间）
 				$scope.subjects = response.data.subjects;
 				console.log($scope.subjects);
 			}else{
