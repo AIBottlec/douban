@@ -17,10 +17,12 @@
 		$scope.subjects= [];
 		$scope.message = '';
 		$scope.totalCount = 0;
+		$scope.loading = true;
 		HttpService.jsonp('http://api.douban.com/v2/movie/in_theaters',{},function (data) {
 			// console.log(data);
 			$scope.subjects = data.subjects;
 			$scope.totalCount = data.total;
+			$scope.loading = false;
 			$scope.$apply('subjects');//apply的作用就是让指定的表达式重新同步
 		});
 		                   // 实现跨域请求
