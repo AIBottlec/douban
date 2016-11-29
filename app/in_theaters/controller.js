@@ -10,7 +10,9 @@
 		});
 	}]);
 
-	module.controller('inTheatersController', ['$scope','$routeParams','HttpService',function ($scope,$routeParams,HttpService) {
+	module.controller('inTheatersController',
+		['$scope','$route','$routeParams','HttpService',
+			function ($scope,$route,$routeParams,HttpService) {
 		var count = 10;//每一页的数量
 		var page = parseInt($routeParams.page);//当前是第几页
 		var start = (page - 1) * count;//当前页数据从哪开始
@@ -22,11 +24,14 @@
 		$scope.totalCount = 0;
 		$scope.totalpages = 0;
 		$scope.loading = true;
+		$scope.title = '';
+		$scope.currentPage = page;
 		HttpService.jsonp('http://api.douban.com/v2/movie/in_theaters',
 			{start:start,count:count},
 			function (data) {
 			// console.log(data);
 			$scope.subjects = data.subjects;
+			$scope.title = data.title;
 			$scope.totalCount = data.total;
 			$scope.totalpages = Math.ceil($scope.totalCount/count);
 			$scope.loading = false;
@@ -35,5 +40,12 @@
 		                   // 实现跨域请求
 		// 查看angular文档可分析到：angular中将所有的JSONP的callback都挂在了angular.callbacks这个对象上
 		// 我们必须给当前地址加上一个参数，callback=JSON_CALLBACK
+
+		// 暴露一个更改上一页下一页的行为
+		$scope.go = function (page) {
+			if(page>=1&&page<=$scope.totalpages){
+				$route.updateParams({page : page});
+			}
+		}
 	}]);
 })(angular);
