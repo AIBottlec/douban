@@ -1,16 +1,16 @@
 (function (angular) {
 	'use strict';
 	//创建正在热映的模块
-	var module = angular.module('movie.coming_soon', ['ngRoute','movie.services.http']);
+	var module = angular.module('movie.movie_list', ['ngRoute','movie.services.http']);
 	//配置模块路由
 	module.config(['$routeProvider', function ($routeProvider) {
-		$routeProvider.when('/coming_soon/:page', {
-			templateUrl: 'coming_soon/view.html',
-			controller: 'ComingSoonController'
+		$routeProvider.when('/:category/:page', {
+			templateUrl: 'movie_list/view.html',
+			controller: 'MovieListController'
 		});
 	}]);
 
-	module.controller('ComingSoonController',
+	module.controller('MovieListController',
 		['$scope','$route','$routeParams','HttpService',
 			function ($scope,$route,$routeParams,HttpService) {
 		var count = 10;//每一页的数量
@@ -26,7 +26,7 @@
 		$scope.loading = true;
 		$scope.title = '';
 		$scope.currentPage = page;
-		HttpService.jsonp('http://api.douban.com/v2/movie/coming_soon',
+		HttpService.jsonp('http://api.douban.com/v2/movie/'+$routeParams.category,
 			{start:start,count:count},
 			function (data) {
 			// console.log(data);
