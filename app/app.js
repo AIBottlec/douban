@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('movie', [
 	'ngRoute',
+	'movie.movie_detail',//注意和movie_list的引用顺序
 	'movie.movie_list',
 	'movie.directives.auto_focus'
 ]).config(['$routeProvider', function ($routeProvider) {
