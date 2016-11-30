@@ -24,10 +24,11 @@
 		$scope.totalCount = 0;
 		$scope.totalpages = 0;
 		$scope.loading = true;
-		$scope.title = '';
+		$scope.title = 'Loading...';
 		$scope.currentPage = page;
 		HttpService.jsonp('http://api.douban.com/v2/movie/'+$routeParams.category,
-			{start:start,count:count},
+			// $routeParams的数据来源：1.路由匹配出来的；2.？参数
+			{start:start,count:count,q:$routeParams.q},
 			function (data) {
 			// console.log(data);
 			$scope.subjects = data.subjects;

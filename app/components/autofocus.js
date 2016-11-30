@@ -14,10 +14,12 @@
 						// 当path发生变化时执行，now是变化后的值
 						var aLink = iElm.children().attr("href");
 						var type = aLink.replace(/#(\/.+?)\/\d+/,'$1');
-						// console.log(path+'-----------'+type);
+						// console.log(now+'-----------'+type);
 						if (now.startsWith(type)){
 							iElm.parent().children().removeClass('active');
 							iElm.addClass('active');
+						}else{
+							iElm.removeClass('active');
 						}
 					});
 
