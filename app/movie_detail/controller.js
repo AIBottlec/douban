@@ -18,12 +18,12 @@
 	}]);
 
 	module.controller('MovieDetailController',
-		['$scope','$route','$routeParams','HttpService',
-			function ($scope,$route,$routeParams,HttpService) {
+		['$scope','$route','$routeParams','HttpService','AppConfig',
+			function ($scope,$route,$routeParams,HttpService,AppConfig) {
 				$scope.movie = {};
 				$scope.loading = true;
 				var id = $routeParams.id;
-				var APIAddress  = "http://api.douban.com/v2/movie/subject/"+id;
+				var APIAddress  = AppConfig.detailApiAddress+id;
 				//跨域的方式
 				HttpService.jsonp(APIAddress,{},function (data) {
 					$scope.movie = data;

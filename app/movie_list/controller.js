@@ -14,9 +14,9 @@
 	}]);
 
 	module.controller('MovieListController',
-		['$scope', '$route', '$routeParams', 'HttpService',
-			function ($scope, $route, $routeParams, HttpService) {
-				var count = 10;//每一页的数量
+		['$scope', '$route', '$routeParams', 'HttpService','AppConfig',
+			function ($scope, $route, $routeParams, HttpService,AppConfig) {
+				var count = AppConfig.pageSize;//每一页的数量
 				var page = parseInt($routeParams.page);//当前是第几页
 				var start = (page - 1) * count;//当前页数据从哪开始
 				//控制器编写：1.设计暴露的数据；2.设计暴露的行为
@@ -29,7 +29,7 @@
 				$scope.loading = true;
 				$scope.title = 'Loading...';
 				$scope.currentPage = page;
-				HttpService.jsonp('http://api.douban.com/v2/movie/' + $routeParams.category,
+				HttpService.jsonp(AppConfig.listApiAddress + $routeParams.category,
 				// $routeParams的数据来源：1.路由匹配出来的；2.？参数
 					{start: start, count: count, q: $routeParams.q},
 					function (data) {
