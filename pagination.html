@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页实现</title>
+</head>
+<script>
+	var current = 3;//当前页
+	var total = 3;//一共多少页
+	var show = 5;//显示几个页码 7
+	//计算当前页只有各几个
+	var region= Math.floor(show/2);//3
+	//show的起始值
+	var begin = current-region;
+	begin = begin<1?1:begin;
+	//show的结束值
+	var end = begin +show;
+	if(end > total){
+		end = total+1;
+		begin = end -show;
+		begin = begin<1?1:begin;
+	}
+	for (var i=begin;i<end;i++){
+		console.log(i);
+	}
+</script>
+<body>
+
+</body>
+</html>
